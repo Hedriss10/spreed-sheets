@@ -1,7 +1,3 @@
-Claro! Aqui está um exemplo de README para o seu projeto:
-
----
-
 # File Processor with Chunking and ZIP Export
 
 Este projeto é uma aplicação Flask que permite fazer o upload de arquivos CSV ou XLSX, processá-los em chunks (partes menores) e gerar um arquivo ZIP contendo esses chunks. O projeto também oferece a opção de remover dados nulos (NA) durante o processamento.
