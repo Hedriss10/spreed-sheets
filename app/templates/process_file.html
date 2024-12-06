@@ -35,7 +35,7 @@
     <div class="container">
         <div class="text-center mb-4">
             <h1>SpreedSheets</h1>
-            <p class="lead">Processamento de arquivos CSV ou XLSX.</p>
+            <p class="lead">Processamento de dados para automatizar Tabelas Bancarias.</p>
         </div>
         <div class="card p-4">
             <form id="fileForm" method="POST" enctype="multipart/form-data">
@@ -44,12 +44,16 @@
                     <input type="file" class="form-control" id="fileInput" name="file" accept=".csv, .xlsx" required>
                 </div>
                 <div class="mb-3">
-                    <label for="chunkSize" class="form-label">Tamanho do Chunk (linhas):</label>
-                    <input type="number" class="form-control" id="chunkSize" name="chunk_size" value="20000" min="1" required>
+                    <label for="BankMaster" class="form-label">É uma tabela do Banco Master?</label>
+                    
+                    <select class="form-control" id="bankMaster" name="bank_master">
+                        <option value="false" selected>Não</option>
+                        <option value="true">Sim</option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label for="removeNA" class="form-label">Remover Dados Ausentes:</label>
-                    <select class="form-control" id="removeNA" name="remove_na">
+                    <label for="BankPan" class="form-label">É uma tabela do Banco Pan?</label>
+                    <select class="form-control" id="bankPan" name="bank_pan">
                         <option value="false" selected>Não</option>
                         <option value="true">Sim</option>
                     </select>
@@ -59,14 +63,6 @@
                 </div>
             </form>
         </div>
-        <div class="container">
-            <div class="card p-4">
-                <div class="card p-4">
-                    <h2>Processamento de dados para dados Bancarios</h2>
-                    <p class="head">Processamento de dados para automatizar tabelas do </strong>banco master</strong> e </strong>banco pan</strong>.</p> <a href=" {{ url_for('process_file_logic') }} ">Clica aqui</a>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -75,7 +71,7 @@
             const form = document.getElementById('fileForm');
             const formData = new FormData(form);
 
-            fetch('/', {
+            fetch('/process-file', {
                 method: 'POST',
                 body: formData,
             })
